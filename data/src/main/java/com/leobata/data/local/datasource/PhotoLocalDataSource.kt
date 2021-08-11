@@ -25,4 +25,16 @@ internal class PhotoLocalDataSource @Inject constructor(
 
     override suspend fun loadPhotoById(photoId: Long): Photo? =
         photoDao.getPhotoById(photoId)?.let { photoMapper.toRepo(it) }
+
+    override suspend fun addPhoto(photo: Photo) {
+        photoDao.insertPhoto(photoMapper.toLocal(photo))
+    }
+
+    override suspend fun removePhoto(photoId: Long) {
+        photoDao.deletePhotoById(photoId)
+    }
+
+    override suspend fun removeAllPhotos() {
+        photoDao.deleteAllPhotos()
+    }
 }

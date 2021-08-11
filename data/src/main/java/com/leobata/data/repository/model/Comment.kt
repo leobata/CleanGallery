@@ -10,6 +10,7 @@ package com.leobata.data.repository.model
  */
 data class Comment(
     val id: Long,
+    val photoId: Long,
     val name: String,
     val email: String,
     val body: String

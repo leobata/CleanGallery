@@ -18,6 +18,7 @@ internal class CommentMapper @Inject constructor() {
     fun toView(domainComment: DomainComment): ViewComment =
         ViewComment(
             id = domainComment.id,
+            photoId = domainComment.photoId,
             name = domainComment.name,
             email = domainComment.email,
             body = domainComment.body
@@ -34,6 +35,7 @@ internal class CommentMapper @Inject constructor() {
         domainCommentList.take(20).map {
             ViewComment(
                 id = it.id,
+                photoId = it.photoId,
                 name = it.name,
                 email = it.email,
                 body = it.body
@@ -50,6 +52,7 @@ internal class CommentMapper @Inject constructor() {
     fun toDomain(viewComment: ViewComment): DomainComment =
         DomainComment(
             id = viewComment.id,
+            photoId = viewComment.photoId,
             name = viewComment.name,
             email = viewComment.email,
             body = viewComment.body

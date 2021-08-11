@@ -30,7 +30,7 @@ class PhotoMapper @Inject constructor() {
      *
      * @return the converted Photo
      */
-    fun toRemote(repoPhoto: RepoPhoto): LocalPhoto =
+    fun toLocal(repoPhoto: RepoPhoto): LocalPhoto =
         LocalPhoto(
             id = repoPhoto.id,
             title = repoPhoto.title,

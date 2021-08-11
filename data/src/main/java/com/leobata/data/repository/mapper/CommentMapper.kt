@@ -18,6 +18,7 @@ internal class CommentMapper @Inject constructor() {
     fun toRepo(domainComment: DomainComment): RepoComment =
         RepoComment(
             id = domainComment.id,
+            photoId = domainComment.photoId,
             name = domainComment.name,
             email = domainComment.email,
             body = domainComment.body
@@ -34,6 +35,7 @@ internal class CommentMapper @Inject constructor() {
         repoCommentList.map {
             DomainComment(
                 id = it.id,
+                photoId = it.photoId,
                 name = it.name,
                 email = it.email,
                 body = it.body
@@ -50,6 +52,7 @@ internal class CommentMapper @Inject constructor() {
     fun toDomain(repoComment: RepoComment): DomainComment =
         DomainComment(
             id = repoComment.id,
+            photoId = repoComment.photoId,
             name = repoComment.name,
             email = repoComment.email,
             body = repoComment.body

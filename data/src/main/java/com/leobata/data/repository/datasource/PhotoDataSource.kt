@@ -21,4 +21,24 @@ interface PhotoDataSource {
      * @return the selected photo
      */
     suspend fun loadPhotoById(photoId: Long): Photo?
+
+    /**
+     * Add a new photo.
+     *
+     * @param photo the new Photo
+     */
+    suspend fun addPhoto(photo: Photo)
+
+    /**
+     * Remove a photo by id.
+     *
+     * @param photoId the Photo id to be removed
+     */
+    suspend fun removePhoto(photoId: Long)
+
+    /**
+     * Remove all photos.
+     *
+     */
+    suspend fun removeAllPhotos()
 }

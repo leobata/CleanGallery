@@ -15,9 +15,10 @@ class CommentMapper @Inject constructor() {
      *
      * @return the converted Comment
      */
-    fun toRepo(remoteComment: RemoteComment): RepoComment =
+    fun toRepo(remoteComment: RemoteComment, photoId: Long): RepoComment =
         RepoComment(
             id = remoteComment.id,
+            photoId = photoId,
             name = remoteComment.name,
             email = remoteComment.email,
             body = remoteComment.body
@@ -33,6 +34,7 @@ class CommentMapper @Inject constructor() {
     fun toRemote(repoComment: RepoComment): RemoteComment =
         RemoteComment(
             id = repoComment.id,
+//            photoId = repoComment.photoId,
             name = repoComment.name,
             email = repoComment.email,
             body = repoComment.body

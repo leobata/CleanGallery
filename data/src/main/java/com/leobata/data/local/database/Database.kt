@@ -5,13 +5,14 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.leobata.data.local.dao.PhotoDao
 import com.leobata.data.local.di.ApplicationScope
+import com.leobata.data.local.model.Comment
 import com.leobata.data.local.model.Photo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(entities = [Photo::class], version = 1)
+@Database(entities = [Photo::class, Comment::class], version = 1)
 abstract class GalleryDatabase : RoomDatabase() {
     abstract fun photoDao(): PhotoDao
     class Callback @Inject constructor(

@@ -1,16 +1,17 @@
 package com.leobata.data.local.model
 
-import com.squareup.moshi.Json
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "comment_table")
 data class Comment(
-    @Json(name = "postId")
-    val postId: Long = 0,
-    @Json(name = "id")
+    @PrimaryKey(autoGenerate = false)
+    @NonNull
     val id: Long = 0,
-    @Json(name = "name")
+    val postId: Long = 0,
+    val photoId: Long = 0,
     val name: String = "",
-    @Json(name = "email")
     val email: String = "",
-    @Json(name = "body")
     val body: String = ""
 )
