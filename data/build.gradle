@@ -1,0 +1,29 @@
+plugins {
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+apply from: "$rootDir/config/dependencies/feature_dependencies.gradle"
+
+dependencies {
+    implementation project(":domain")
+    implementation Deps.retrofit.retrofit
+    implementation Deps.retrofit.converter
+    implementation Deps.retrofit.okHttp
+    implementation Deps.retrofit.interceptor
+    implementation Deps.hilt.coreAndroid
+    implementation 'androidx.test.ext:junit-ktx:1.1.3'
+
+    kapt Deps.hilt.kapt
+
+    implementation Deps.coroutines.core
+    implementation Deps.room.runtime
+    implementation Deps.room.ktx
+    kapt Deps.room.compiler
+
+    androidTestImplementation Deps.test.runner
+    androidTestImplementation Deps.test.room
+
+    testImplementation Deps.test.junit
+    testImplementation Deps.test.mockk
+    testImplementation Deps.coroutines.test
+}

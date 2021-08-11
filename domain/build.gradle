@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+dependencies {
+    implementation Deps.coroutines.core
+    implementation Deps.hilt.core
+
+    testImplementation Deps.test.junit
+    testImplementation Deps.test.mockk
+    testImplementation Deps.coroutines.test
+}
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}

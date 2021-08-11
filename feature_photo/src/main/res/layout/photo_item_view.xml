@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="photo"
+            type="com.leobata.feature_photo.model.Photo" />
+
+        <variable
+            name="clickListener"
+            type="com.leobata.feature_photo.presentation.list.PhotoItemClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:foreground="?android:selectableItemBackground"
+        android:padding="2dp"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo_thumb"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:onClick="@{(thisView) ->  clickListener.onPhotoItemClicked(photo, thisView)}"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{photo.thumbnailUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/scrim"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:src="@color/black_70"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/photo_title"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="@{photo.title}"
+                android:textAppearance="@style/Photo.Title"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/scrim"
+                app:layout_constraintEnd_toEndOf="@id/scrim"
+                app:layout_constraintStart_toStartOf="@id/scrim"
+                app:layout_constraintTop_toTopOf="@id/scrim"
+                tools:text="Anandndakandhjsaiuawebdawjkf wdfqwd" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

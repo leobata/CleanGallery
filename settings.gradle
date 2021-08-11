@@ -1,0 +1,5 @@
+rootProject.name = "CleanGallery"
+include ':app'
+include ':domain'
+include ':data'
+include ':feature_photo'

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feature_photo_nav"
+    app:startDestination="@id/photoListFragment">
+
+    <fragment
+        android:id="@+id/photoListFragment"
+        android:name="com.leobata.feature_photo.presentation.list.PhotoListFragment"
+        android:label="photo_list_fragment"
+        tools:layout="@layout/photo_list_fragment" >
+        <action
+            android:id="@+id/action_photoList_to_photoDetail"
+            app:destination="@id/photoDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoDetailFragment"
+        android:name="com.leobata.feature_photo.presentation.detail.PhotoDetailListFragment"
+        android:label="photo_detail_fragment"
+        tools:layout="@layout/photo_detail_list_fragment" >
+        <argument
+            android:name="photoId"
+            app:argType="long" />
+    </fragment>
+</navigation>
