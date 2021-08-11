@@ -6,6 +6,7 @@ apply from: "$rootDir/config/dependencies/feature_dependencies.gradle"
 
 dependencies {
     implementation project(":domain")
+    implementation project(":common-android")
 
     implementation Deps.android.ktx
     implementation Deps.android.appCompat

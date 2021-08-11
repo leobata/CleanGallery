@@ -6,18 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.leobata.common_android.base.BaseFragment
 import com.leobata.feature_photo.databinding.PhotoListFragmentBinding
 import com.leobata.feature_photo.model.Photo
 import com.leobata.feature_photo.model.UIResponseState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PhotoListFragment : Fragment(), PhotoItemClickListener {
+internal class PhotoListFragment : BaseFragment<PhotoListFragmentBinding, PhotoListViewModel>(),
+    PhotoItemClickListener {
+    override var useSharedViewModel = true
+
     private val viewStateObserver = Observer<UIResponseState> {
         when (it) {
             is UIResponseState.Error -> Log.d("PhotoListFragment", "ERROR")
@@ -28,23 +30,23 @@ class PhotoListFragment : Fragment(), PhotoItemClickListener {
             }
         }
     }
-    private val viewModel: PhotoListViewModel by activityViewModels()
+
     private val listAdapter =
         PhotoListAdapter(
             arrayListOf(),
             this
         )
 
-    private var _binding: PhotoListFragmentBinding? = null
-    private val binding get() = _binding
+    override fun getViewModelClass() = PhotoListViewModel::class.java
+
+    override fun getViewBinding() = PhotoListFragmentBinding.inflate(layoutInflater)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = PhotoListFragmentBinding.inflate(inflater, container, false)
         postponeEnterTransition()
-        return binding?.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,14 +58,9 @@ class PhotoListFragment : Fragment(), PhotoItemClickListener {
     }
 
     private fun setupUI() {
-        binding?.photoList?.adapter = listAdapter
-        binding?.viewModel = viewModel
-        binding?.lifecycleOwner = viewLifecycleOwner
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        binding.photoList.adapter = listAdapter
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 
     override fun onPhotoItemClicked(photo: Photo, view: View) {

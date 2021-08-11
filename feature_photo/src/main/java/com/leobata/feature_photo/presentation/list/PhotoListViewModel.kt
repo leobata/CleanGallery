@@ -2,8 +2,8 @@ package com.leobata.feature_photo.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.leobata.common_android.base.BaseViewModel
 import com.leobata.domain.usecase.photo.LoadAllPhotos
 import com.leobata.feature_photo.mapper.PhotoMapper
 import com.leobata.feature_photo.model.UIResponseState
@@ -18,7 +18,7 @@ import javax.inject.Inject
 internal class PhotoListViewModel @Inject constructor(
     private val photoUseCase: LoadAllPhotos,
     private val photoMapper: PhotoMapper
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _viewState = MutableLiveData<UIResponseState>()
     val viewState: LiveData<UIResponseState> = _viewState

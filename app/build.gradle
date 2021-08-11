@@ -41,6 +41,7 @@ dependencies {
     implementation project(":data")
     implementation project(":domain")
     implementation project(":feature_photo")
+    implementation project(":common-android")
     implementation Deps.android.ktx
     implementation Deps.android.appCompat
     implementation Deps.android.material

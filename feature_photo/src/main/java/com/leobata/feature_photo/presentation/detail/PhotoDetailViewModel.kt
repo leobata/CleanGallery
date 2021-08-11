@@ -3,8 +3,8 @@ package com.leobata.feature_photo.presentation.detail
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.leobata.common_android.base.BaseViewModel
 import com.leobata.domain.usecase.comment.LoadComments
 import com.leobata.feature_photo.mapper.CommentMapper
 import com.leobata.feature_photo.model.Photo
@@ -21,7 +21,7 @@ import javax.inject.Inject
 internal class PhotoDetailViewModel @Inject constructor(
     private val loadComments: LoadComments,
     private val commentMapper: CommentMapper
-) : ViewModel() {
+) : BaseViewModel() {
     private val _viewState = MutableLiveData<UIResponseState>()
     val viewState: LiveData<UIResponseState> = _viewState
 
