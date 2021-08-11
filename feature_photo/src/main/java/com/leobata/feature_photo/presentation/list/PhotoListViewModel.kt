@@ -23,10 +23,6 @@ internal class PhotoListViewModel @Inject constructor(
     private val _viewState = MutableLiveData<UIResponseState>()
     val viewState: LiveData<UIResponseState> = _viewState
 
-    init {
-        fetchData()
-    }
-
     fun fetchData() {
         viewModelScope.launch {
             photoUseCase()

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -19,12 +19,13 @@ import com.leobata.feature_photo.R
 import com.leobata.feature_photo.databinding.PhotoDetailListFragmentBinding
 import com.leobata.feature_photo.model.Photo
 import com.leobata.feature_photo.model.UIResponseState
+import com.leobata.feature_photo.presentation.list.PhotoListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PhotoDetailListFragment : Fragment() {
 
-    private val viewModel: PhotoDetailListViewModel by viewModels()
+    private val viewModel: PhotoListViewModel by activityViewModels()
     private val args: PhotoDetailListFragmentArgs by navArgs()
     private var _binding: PhotoDetailListFragmentBinding? = null
     private val binding get() = _binding
@@ -67,10 +68,10 @@ class PhotoDetailListFragment : Fragment() {
         binding?.pager?.setPageTransformer(Pager2_CubeOutTransformer())
         binding?.pager?.post {
             binding?.pager?.setCurrentItem(position, false)
+            binding?.pager?.transitionName = args.photoId.toString()
+            prepareTransitions(position)
+            startPostponedEnterTransition()
         }
-        binding?.pager?.transitionName = args.photoId.toString()
-        prepareTransitions(position)
-        startPostponedEnterTransition()
     }
 
     private fun prepareTransitions(position: Int) {

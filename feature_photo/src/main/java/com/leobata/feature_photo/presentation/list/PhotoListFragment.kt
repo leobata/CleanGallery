@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -28,7 +28,7 @@ class PhotoListFragment : Fragment(), PhotoItemClickListener {
             }
         }
     }
-    private val viewModel: PhotoListViewModel by viewModels()
+    private val viewModel: PhotoListViewModel by activityViewModels()
     private val listAdapter =
         PhotoListAdapter(
             arrayListOf(),
@@ -52,6 +52,7 @@ class PhotoListFragment : Fragment(), PhotoItemClickListener {
 
         setupUI()
         viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
+        viewModel.fetchData()
     }
 
     private fun setupUI() {

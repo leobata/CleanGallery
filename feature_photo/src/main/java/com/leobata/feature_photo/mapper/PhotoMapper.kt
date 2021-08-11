@@ -53,7 +53,7 @@ internal class PhotoMapper @Inject constructor(private val commentMapper: Commen
                 url = it.url,
                 thumbnailUrl = it.thumbnailUrl
             )
-        }
+        }.sortedBy { it.title }
 
     /**
      * Maps Photo with comments from Domain to View.
