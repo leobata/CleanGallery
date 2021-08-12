@@ -11,6 +11,9 @@ interface PhotoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPhoto(photo: Photo): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllPhotos(photoList: List<Photo>)
+
     @Transaction
     @Query("SELECT * FROM photo_table ORDER BY title ASC")
     fun getPhotos(): Flow<List<Photo>>

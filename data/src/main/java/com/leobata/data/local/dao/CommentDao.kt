@@ -10,6 +10,9 @@ interface CommentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComment(comment: Comment): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllComments(commentList: List<Comment>)
+
     @Transaction
     @Query("SELECT * FROM comment_table")
     fun getComments(): Flow<List<Comment>>

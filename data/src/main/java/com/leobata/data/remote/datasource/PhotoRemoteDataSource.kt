@@ -35,6 +35,7 @@ internal class PhotoRemoteDataSource @Inject constructor(
     }
 
     override suspend fun addPhoto(photo: Photo) {}
+    override suspend fun addAllPhotos(photoList: List<Photo>) {}
     override suspend fun removePhoto(photoId: Long) {}
     override suspend fun removeAllPhotos() {}
 }

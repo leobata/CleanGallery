@@ -13,4 +13,11 @@ interface CommentDataSource {
      * @return all the available comments
      */
     fun loadCommentsByPhotoId(photoId: Long): Flow<List<Comment>>
+
+    /**
+     * Add comment list.
+     *
+     * @param commentList the Comment list
+     */
+    suspend fun addAllComments(commentList: List<Comment>)
 }

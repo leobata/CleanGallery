@@ -51,6 +51,9 @@ dependencies {
     implementation Deps.nav.ktx
     implementation Deps.retrofit.retrofit
     implementation Deps.retrofit.okHttp
+    implementation Deps.room.runtime
+    implementation Deps.room.ktx
+    kapt Deps.room.compiler
     kapt Deps.hilt.kapt
     testImplementation Deps.test.junit
     androidTestImplementation Deps.test.junitExt

@@ -1,21 +1,39 @@
 package com.leobata.data.repository
 
+import android.util.Log
+import com.leobata.data.local.di.LocalPhotoDataSource
+import com.leobata.data.remote.di.RemotePhotoDataSource
 import com.leobata.data.repository.datasource.PhotoDataSource
 import com.leobata.data.repository.mapper.PhotoMapper
 import com.leobata.domain.model.Photo
 import com.leobata.domain.repository.PhotoRepository
-import com.leobata.data.remote.di.RemotePhotoDataSource
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 internal class PhotoRepositoryImpl @Inject constructor(
     @RemotePhotoDataSource private val photoRemoteDataSource: PhotoDataSource,
+    @LocalPhotoDataSource private val photoLocalDataSource: PhotoDataSource,
     private val photoMapper: PhotoMapper
 ) : PhotoRepository {
     override suspend fun findPhotoById(photoId: Long): Photo? =
         photoRemoteDataSource.loadPhotoById(photoId)?.let { photoMapper.toDomain(it) }
 
-    override fun findAllPhotos(): Flow<List<Photo>> =
-        photoRemoteDataSource.loadAllPhotos().map { photoMapper.toDomain(it) }
+    override fun findAllPhotos(): Flow<List<Photo>> {
+        return flow {
+            photoRemoteDataSource.loadAllPhotos()
+                .catch {
+                    Log.d("PhotoRepository", "Catch error")
+                    photoLocalDataSource.loadAllPhotos().collect { localPhotos ->
+                        emit(photoMapper.toDomain(localPhotos))
+                    }
+                }
+                .collect { remotePhotos ->
+                    photoLocalDataSource.addAllPhotos(remotePhotos)
+                    photoLocalDataSource.loadAllPhotos().collect { localPhotos ->
+                        emit(photoMapper.toDomain(localPhotos))
+                    }
+                }
+        }.flowOn(Dispatchers.IO)
+    }
 }

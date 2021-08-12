@@ -37,4 +37,21 @@ class PhotoMapper @Inject constructor() {
             url = repoPhoto.url,
             thumbnailUrl = repoPhoto.thumbnailUrl
         )
+
+    /**
+     * Maps Photos from Repo to Local.
+     *
+     * @param repoPhotoList the Photo list to be converted.
+     *
+     * @return the converted Photo list
+     */
+    fun toLocal(repoPhotoList: List<RepoPhoto>): List<LocalPhoto> =
+        repoPhotoList.map {
+            LocalPhoto(
+                id = it.id,
+                title = it.title,
+                url = it.url,
+                thumbnailUrl = it.thumbnailUrl
+            )
+        }
 }

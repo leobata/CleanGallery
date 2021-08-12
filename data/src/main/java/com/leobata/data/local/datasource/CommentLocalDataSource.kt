@@ -23,4 +23,8 @@ internal class CommentLocalDataSource @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    override suspend fun addAllComments(commentList: List<Comment>) {
+        commentDao.insertAllComments(commentMapper.toLocal(commentList))
+    }
 }

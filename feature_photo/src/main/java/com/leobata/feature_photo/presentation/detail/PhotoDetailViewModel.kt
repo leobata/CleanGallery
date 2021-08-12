@@ -1,6 +1,5 @@
 package com.leobata.feature_photo.presentation.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -25,17 +24,12 @@ internal class PhotoDetailViewModel @Inject constructor(
     private val _viewState = MutableLiveData<UIResponseState>()
     val viewState: LiveData<UIResponseState> = _viewState
 
-//    init {
-//        fetchData()
-//    }
-
     fun fetchData(photo: Photo) {
         viewModelScope.launch {
             loadComments(photo.id)
                 .onStart { _viewState.value = UIResponseState.Loading }
                 .catch { _viewState.value = UIResponseState.Error("Error") }
                 .collect {
-                    Log.d("BATATA", "Sucesso - Photo = $photo, Comments = $it")
                     _viewState.value = UIResponseState.Success(
                         content = PhotoWithComments(
                             photo,

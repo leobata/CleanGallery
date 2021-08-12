@@ -24,4 +24,6 @@ internal class CommentRemoteDataSource @Inject constructor(
             emit(comments)
         }.flowOn(Dispatchers.IO)
     }
+
+    override suspend fun addAllComments(commentList: List<Comment>) {}
 }

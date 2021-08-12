@@ -30,6 +30,13 @@ interface PhotoDataSource {
     suspend fun addPhoto(photo: Photo)
 
     /**
+     * Add photo list.
+     *
+     * @param photo the Photo list
+     */
+    suspend fun addAllPhotos(photoList: List<Photo>)
+
+    /**
      * Remove a photo by id.
      *
      * @param photoId the Photo id to be removed

@@ -25,6 +25,24 @@ class CommentMapper @Inject constructor() {
         )
 
     /**
+     * Maps Comment list from Local to Repo.
+     *
+     * @param localCommentList the Comment list to be converted.
+     *
+     * @return the converted Comment list
+     */
+    fun toRepo(localCommentList: List<LocalComment>): List<RepoComment> =
+        localCommentList.map {
+            RepoComment(
+                id = it.id,
+                photoId = it.photoId,
+                name = it.name,
+                email = it.email,
+                body = it.body
+            )
+        }
+
+    /**
      * Maps Comment from Repo to Local.
      *
      * @param repoComment the Comment to be converted.
@@ -39,4 +57,22 @@ class CommentMapper @Inject constructor() {
             email = repoComment.email,
             body = repoComment.body
         )
+
+    /**
+     * Maps Comment list from Repo to Local.
+     *
+     * @param repoCommentList the Comment list to be converted.
+     *
+     * @return the converted Comment
+     */
+    fun toLocal(repoCommentList: List<RepoComment>): List<LocalComment> =
+        repoCommentList.map {
+            LocalComment(
+                id = it.id,
+                photoId = it.photoId,
+                name = it.name,
+                email = it.email,
+                body = it.body
+            )
+        }
 }

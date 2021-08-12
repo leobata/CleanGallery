@@ -18,12 +18,13 @@ internal class PhotoDetailFragment(private val photo: Photo) :
 
     private val viewStateObserver = Observer<UIResponseState> {
         when (it) {
-            is UIResponseState.Error -> Log.d("PhotoListFragment", "ERROR")
-            is UIResponseState.Loading -> Log.d("PhotoListFragment", "LOADING")
+
+            is UIResponseState.Error -> Log.d("PhotoDetailFragment", "ERROR")
+            is UIResponseState.Loading -> Log.d("PhotoDetailFragment", "LOADING")
             is UIResponseState.Success<*> -> {
-                binding.expandedImage.transitionName = photo.id.toString()
             }
         }
+        binding.expandedImage.transitionName = photo.id.toString()
     }
 
     override fun onCreateView(

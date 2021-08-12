@@ -37,6 +37,11 @@ object LocalModule {
     fun providesPhotoDao(database: GalleryDatabase) =
         database.photoDao()
 
+    @Provides
+    @Singleton
+    fun providesCommentsDao(database: GalleryDatabase) =
+        database.commentDao()
+
     @ApplicationScope
     @Provides
     @Singleton
