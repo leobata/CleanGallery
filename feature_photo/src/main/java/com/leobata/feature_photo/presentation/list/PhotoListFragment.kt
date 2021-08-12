@@ -31,11 +31,7 @@ internal class PhotoListFragment : BaseFragment<PhotoListFragmentBinding, PhotoL
         }
     }
 
-    private val listAdapter =
-        PhotoListAdapter(
-            arrayListOf(),
-            this
-        )
+    private lateinit var listAdapter: PhotoListAdapter
 
     override fun getViewModelClass() = PhotoListViewModel::class.java
 
@@ -45,19 +41,21 @@ internal class PhotoListFragment : BaseFragment<PhotoListFragmentBinding, PhotoL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         postponeEnterTransition()
+        setupUI()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupUI()
         viewModel.viewState.observe(viewLifecycleOwner, viewStateObserver)
         viewModel.fetchData()
     }
 
     private fun setupUI() {
+        listAdapter = PhotoListAdapter(arrayListOf(), this)
+        listAdapter.setHasStableIds(true)
         binding.photoList.adapter = listAdapter
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

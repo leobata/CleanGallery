@@ -4,10 +4,8 @@ import com.leobata.data.remote.api.ApiHelper
 import com.leobata.data.remote.mapper.CommentMapper
 import com.leobata.data.repository.datasource.CommentDataSource
 import com.leobata.data.repository.model.Comment
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 internal class CommentRemoteDataSource @Inject constructor(
@@ -22,7 +20,7 @@ internal class CommentRemoteDataSource @Inject constructor(
                 comments = it.map { comment -> commentMapper.toRepo(comment, photoId) }
             }
             emit(comments)
-        }.flowOn(Dispatchers.IO)
+        }
     }
 
     override suspend fun addAllComments(commentList: List<Comment>) {}

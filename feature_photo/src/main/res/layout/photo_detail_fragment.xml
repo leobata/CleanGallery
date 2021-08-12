@@ -26,10 +26,10 @@
                 android:id="@+id/collapsing_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="@color/gray"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:collapsedTitleTextAppearance="@style/Photo.Detail.Title.Collapsed"
+                app:contentScrim="@color/gray"
                 app:expandedTitleTextAppearance="@style/Photo.Detail.Title.Expanded"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:setTitle="@{viewModel.viewState}">
 
                 <ImageView
@@ -54,22 +54,35 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <TextView
+                android:id="@+id/commentSectionHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/comments"
+                android:textAppearance="@style/Comment.Header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:onRefreshListener="@{() -> viewModel.refreshData()}"
+                app:layout_constraintTop_toBottomOf="@id/commentSectionHeader"
+                app:onRefreshListener="@{() -> viewModel.fetchData()}"
                 app:setRefreshing="@{viewModel.viewState}">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:comments="@{viewModel.viewState}" />
+                    app:comments="@{viewModel.viewState}"
+                    app:setVisibility="@{viewModel.viewState}" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             <ImageView
@@ -78,6 +91,17 @@
                 app:layout_constraintBottom_toBottomOf="@+id/refreshLayout"
                 app:layout_constraintEnd_toEndOf="@+id/refreshLayout"
                 app:layout_constraintStart_toStartOf="@+id/refreshLayout"
+                app:layout_constraintTop_toTopOf="@+id/refreshLayout" />
+
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/no_data_found"
+                app:errorVisibility="@{viewModel.viewState}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/refreshLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

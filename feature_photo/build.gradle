@@ -16,17 +16,19 @@ dependencies {
     implementation Deps.hilt.coreAndroid
     implementation Deps.glide.glide
     kapt Deps.glide.processor
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation Deps.android.legacySupport
+    implementation Deps.android.lifecycleLiveData
+    implementation Deps.android.lifecycleViewModel
     implementation Deps.nav.fragment
     implementation Deps.nav.ktx
     kapt Deps.hilt.kapt
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
-    implementation 'com.github.CodeBoy722:ViewPager2_Transformers:1.0.0'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+    implementation Deps.hilt.viewModel
+    implementation Deps.android.viewPager
+    implementation Deps.android.viewPagerTransform
+    kapt Deps.hilt.compiler
+
     testImplementation Deps.test.junit
+
     androidTestImplementation Deps.test.junitExt
     androidTestImplementation Deps.test.barista
 }

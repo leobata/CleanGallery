@@ -1,6 +1,5 @@
 package com.leobata.data.repository
 
-import android.util.Log
 import com.leobata.data.local.di.LocalCommentDataSource
 import com.leobata.data.remote.di.RemoteCommentDataSource
 import com.leobata.data.repository.datasource.CommentDataSource
@@ -16,15 +15,16 @@ internal class CommentRepositoryImpl @Inject constructor(
     @LocalCommentDataSource private val commentLocalDataSource: CommentDataSource,
     private val commentMapper: CommentMapper
 ) : CommentRepository {
-    private val TAG = this.javaClass::class.simpleName
     override fun findCommentsByPhotoId(photoId: Long): Flow<List<Comment>> {
         return flow {
             commentRemoteDataSource.loadCommentsByPhotoId(photoId)
                 .catch {
-                    Log.d(TAG, "Catch error")
                     commentLocalDataSource.loadCommentsByPhotoId(photoId).collect { localComments ->
-                        Log.d(TAG, "Local comments size = ${localComments.size}")
-                        emit(commentMapper.toDomain(localComments))
+                        if (localComments.isNotEmpty()) {
+                            emit(commentMapper.toDomain(localComments))
+                        } else {
+                            throw Exception("No comments values found")
+                        }
                     }
                 }
                 .collect { remoteComments ->

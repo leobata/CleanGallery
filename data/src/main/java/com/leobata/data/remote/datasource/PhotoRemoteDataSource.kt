@@ -4,11 +4,9 @@ import com.leobata.data.remote.api.ApiHelper
 import com.leobata.data.remote.mapper.PhotoMapper
 import com.leobata.data.repository.datasource.PhotoDataSource
 import com.leobata.data.repository.model.Photo
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 internal class PhotoRemoteDataSource @Inject constructor(
@@ -23,7 +21,7 @@ internal class PhotoRemoteDataSource @Inject constructor(
                 photos = it.map { photo -> photoMapper.toRepo(photo) }
             }
             emit(photos)
-        }.flowOn(Dispatchers.IO)
+        }
     }
 
     override suspend fun loadPhotoById(photoId: Long): Photo? {

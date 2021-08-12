@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.leobata.common_android.HiltTestRunner"
     }
 
     buildTypes {
@@ -58,4 +58,8 @@ dependencies {
     testImplementation Deps.test.junit
     androidTestImplementation Deps.test.junitExt
     androidTestImplementation Deps.test.barista
+    androidTestImplementation Deps.test.coreExecutor
+    androidTestImplementation Deps.test.hiltCore
+    androidTestImplementation Deps.test.hiltCompiler
+    kaptAndroidTest Deps.test.hiltCompiler
 }

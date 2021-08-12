@@ -4,11 +4,9 @@ import com.leobata.data.local.dao.PhotoDao
 import com.leobata.data.local.mapper.PhotoMapper
 import com.leobata.data.repository.datasource.PhotoDataSource
 import com.leobata.data.repository.model.Photo
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 internal class PhotoLocalDataSource @Inject constructor(
@@ -20,7 +18,7 @@ internal class PhotoLocalDataSource @Inject constructor(
             photoDao.getPhotos().collect {
                 emit(it.map { localPhoto -> photoMapper.toRepo(localPhoto) })
             }
-        }.flowOn(Dispatchers.IO)
+        }
     }
 
     override suspend fun loadPhotoById(photoId: Long): Photo? =

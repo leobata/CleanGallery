@@ -29,6 +29,8 @@ class CommentListAdapter(
 
     override fun getItemCount() = commentList.size
 
+    override fun getItemId(position: Int) = commentList[position].id
+
     class CommentViewHolder(var view: PhotoCommentItemViewBinding) :
         RecyclerView.ViewHolder(view.root)
 }

@@ -13,7 +13,6 @@ object Versions {
     const val constraintLayout = "2.0.4"
     const val ktx = "1.0.2"
     const val room = "2.3.0"
-    const val playCore = "1.10.0"
     const val appCompat = "1.3.1"
 
     const val navigation = "2.3.5"
@@ -22,22 +21,22 @@ object Versions {
     const val logging = "2.0.6"
 
     const val hilt = "2.35"
+    const val hiltGradle = "2.28-alpha"
+    const val hiltCompiler = "1.0.0"
+    const val hiltViewModel = "1.0.0-alpha03"
 
     const val testJunit = "4.12"
     const val testRunner = "1.1.1"
-    const val testCore = "1.1.0"
-    const val testMockk = "1.9.3"
+    const val testCore = "1.3.0"
+    const val testMockk = "1.12.0"
     const val testUiAutomator = "2.2.0"
     const val testJunitExt = "1.1.0"
+    const val testJunitKtx = "1.1.3"
     const val testRoom = "2.1.0"
-    const val barista = "3.7.0"
 
     const val espresso = "3.3.0"
 
     const val buildGradle = "7.1.0-alpha05"
-
-    const val detekt = "1.13.1"
-    const val ktlint = "0.39.0"
 
     const val retrofit = "2.9.0"
     const val okhttp = "5.0.0-alpha.2"
@@ -45,6 +44,14 @@ object Versions {
     const val glide = "4.12.0"
 
     const val swipeToRefresh = "1.1.0"
+    const val archCore = "2.1.0"
+
+    const val legacy = "1.0.0"
+    const val lifecycle = "2.3.1"
+    const val viewPager = "1.1.0-alpha01"
+    const val viewPagerTransform = "1.0.0"
+
+    const val truth = "1.0.1"
 }
 
 object Deps {
@@ -54,7 +61,6 @@ object Deps {
     val android = AndroidDeps
     val coroutines = CoroutinesDeps
     val test = TestDeps
-    val quality = QualityDeps
     val gradle = GradleDeps
     val hilt = HiltDeps
     val glide = GlideDeps
@@ -66,15 +72,23 @@ object AndroidDeps {
     val material = "com.google.android.material:material:${Versions.material}"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     val ktx = "androidx.core:core-ktx:${Versions.ktx}"
-    val playCore = "com.google.android.play:core:${Versions.playCore}"
     val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     val swipeToRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeToRefresh}"
+    val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
+    val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    val viewPager = "androidx.viewpager2:viewpager2:${Versions.viewPager}"
+    val viewPagerTransform =
+        "com.github.CodeBoy722:ViewPager2_Transformers:${Versions.viewPagerTransform}"
 }
 
 object HiltDeps {
     val core = "com.google.dagger:hilt-core:${Versions.hilt}"
     val coreAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     val kapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    val gradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltGradle}"
+    val compiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompiler}"
+    val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltViewModel}"
 }
 
 object GlideDeps {
@@ -110,18 +124,18 @@ object TestDeps {
     val junit = "junit:junit:${Versions.testJunit}"
     val runner = "androidx.test:runner:${Versions.testRunner}"
     val core = "androidx.test:core:${Versions.testCore}"
+    val coreExecutor = "androidx.arch.core:core-testing:${Versions.archCore}"
     val coreKtx = "androidx.test:core-ktx:${Versions.testCore}"
     val uiAutomator = "androidx.test.uiautomator:uiautomator:${Versions.testUiAutomator}"
     val junitExt = "androidx.test.ext:junit:${Versions.testJunitExt}"
+    val junitKtx = "androidx.test.ext:junit-ktx:${Versions.testJunitKtx}"
     val mockk = "io.mockk:mockk:${Versions.testMockk}"
     val room = "androidx.room:room-testing:${Versions.testRoom}"
     val barista = "com.github.SchibstedSpain:Barista:${Versions.espresso}"
     val navigation = "androidx.navigation:navigation-testing:${Versions.navigation}"
-}
-
-object QualityDeps {
-    val detekt = "io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"
-    val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
+    val hiltCore = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
+    val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    val truth = "com.google.truth:truth:${Versions.truth}"
 }
 
 object GradleDeps {

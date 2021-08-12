@@ -40,6 +40,7 @@ internal class PhotoDetailListFragment :
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         sharedElementEnterTransition =
             TransitionInflater.from(context)
                 .inflateTransition(R.transition.image_shared_element_transition)
@@ -85,7 +86,8 @@ internal class PhotoDetailListFragment :
     ) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = pages.size
 
-        override fun createFragment(position: Int): Fragment = PhotoDetailFragment(pages[position])
+        override fun createFragment(position: Int): Fragment =
+            PhotoDetailFragment.newInstance(pages[position])
     }
 
     override fun getViewModelClass() = PhotoListViewModel::class.java

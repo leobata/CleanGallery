@@ -1,5 +1,4 @@
 plugins {
-    id 'java-library'
     id 'kotlin'
 }
 
@@ -11,8 +10,3 @@ dependencies {
     testImplementation Deps.test.mockk
     testImplementation Deps.coroutines.test
 }
-
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_1_8
-//    targetCompatibility = JavaVersion.VERSION_1_8
-//}

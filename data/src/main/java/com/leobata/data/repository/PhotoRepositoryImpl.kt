@@ -1,6 +1,5 @@
 package com.leobata.data.repository
 
-import android.util.Log
 import com.leobata.data.local.di.LocalPhotoDataSource
 import com.leobata.data.remote.di.RemotePhotoDataSource
 import com.leobata.data.repository.datasource.PhotoDataSource
@@ -23,9 +22,12 @@ internal class PhotoRepositoryImpl @Inject constructor(
         return flow {
             photoRemoteDataSource.loadAllPhotos()
                 .catch {
-                    Log.d("PhotoRepository", "Catch error")
                     photoLocalDataSource.loadAllPhotos().collect { localPhotos ->
-                        emit(photoMapper.toDomain(localPhotos))
+                        if (localPhotos.isNotEmpty()) {
+                            emit(photoMapper.toDomain(localPhotos))
+                        } else {
+                            throw Exception("No values found")
+                        }
                     }
                 }
                 .collect { remotePhotos ->

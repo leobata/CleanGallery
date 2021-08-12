@@ -1,6 +1,6 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
-apply from: "$rootDir/config/quality.gradle"
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -8,6 +8,16 @@ android {
         minSdkVersion Versions.minSdk
         targetSdkVersion Versions.targetSdk
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        // for JNA and JNA-platform
+        exclude "META-INF/AL2.0"
+        exclude "META-INF/LGPL2.1"
+        // for byte-buddy
+        exclude "META-INF/licenses/ASM"
+        pickFirst "win32-x86-64/attach_hotspot_windows.dll"
+        pickFirst "win32-x86/attach_hotspot_windows.dll"
     }
 }
 

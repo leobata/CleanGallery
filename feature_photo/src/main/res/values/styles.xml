@@ -40,6 +40,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Comment.Header" parent="Comment">
+        <item name="android:fontFamily">@font/playfair</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="Comment.Name" parent="Comment">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">12sp</item>

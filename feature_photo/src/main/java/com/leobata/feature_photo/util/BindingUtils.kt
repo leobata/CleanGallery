@@ -1,6 +1,8 @@
 package com.leobata.feature_photo.util
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,11 +42,33 @@ fun ImageView.loadFromUrl(state: UIResponseState?) {
 fun RecyclerView.setComments(state: UIResponseState?) {
     adapter = if (isInstanceOf<UIResponseState.Success<PhotoWithComments>>(state)) {
         val data = state as UIResponseState.Success<PhotoWithComments>
-        CommentListAdapter(ArrayList(data.content.comments))
+        val adapter = CommentListAdapter(ArrayList(data.content.comments))
+        adapter.setHasStableIds(true)
+        adapter
     } else {
         CommentListAdapter(arrayListOf())
     }
     layoutManager = LinearLayoutManager(context)
+}
+
+@BindingAdapter("setVisibility")
+fun RecyclerView.setVisibility(state: UIResponseState?) {
+    visibility = if (isInstanceOf<UIResponseState.Error>(state) ||
+        isInstanceOf<UIResponseState.Loading>(state)
+    ) {
+        View.INVISIBLE
+    } else {
+        View.VISIBLE
+    }
+}
+
+@BindingAdapter("errorVisibility")
+fun TextView.errorVisibility(state: UIResponseState?) {
+    visibility = if (isInstanceOf<UIResponseState.Error>(state)) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
 }
 
 inline fun <reified T> isInstanceOf(instance: Any?): Boolean {

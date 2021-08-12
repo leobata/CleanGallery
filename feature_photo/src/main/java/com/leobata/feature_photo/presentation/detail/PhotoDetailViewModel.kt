@@ -24,26 +24,24 @@ internal class PhotoDetailViewModel @Inject constructor(
     private val _viewState = MutableLiveData<UIResponseState>()
     val viewState: LiveData<UIResponseState> = _viewState
 
-    fun fetchData(photo: Photo) {
+    private lateinit var _photo: Photo
+    fun setArguments(photo: Photo) {
+        _photo = photo
+    }
+
+    fun fetchData() {
         viewModelScope.launch {
-            loadComments(photo.id)
+            loadComments(_photo.id)
                 .onStart { _viewState.value = UIResponseState.Loading }
                 .catch { _viewState.value = UIResponseState.Error("Error") }
                 .collect {
                     _viewState.value = UIResponseState.Success(
                         content = PhotoWithComments(
-                            photo,
+                            _photo,
                             commentMapper.toView(it)
                         )
                     )
                 }
-        }
-    }
-
-    fun refreshData() {
-        if (_viewState.value is UIResponseState.Success<*>) {
-            val data = (_viewState.value as UIResponseState.Success<*>).content as PhotoWithComments
-            fetchData(data.photo)
         }
     }
 }

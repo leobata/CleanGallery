@@ -4,11 +4,9 @@ import com.leobata.data.local.dao.CommentDao
 import com.leobata.data.local.mapper.CommentMapper
 import com.leobata.data.repository.datasource.CommentDataSource
 import com.leobata.data.repository.model.Comment
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 internal class CommentLocalDataSource @Inject constructor(
@@ -21,7 +19,7 @@ internal class CommentLocalDataSource @Inject constructor(
             commentDao.getCommentByPhotoId(photoId).collect {
                 emit(it.map { localComment -> commentMapper.toRepo(localComment) })
             }
-        }.flowOn(Dispatchers.IO)
+        }
     }
 
     override suspend fun addAllComments(commentList: List<Comment>) {

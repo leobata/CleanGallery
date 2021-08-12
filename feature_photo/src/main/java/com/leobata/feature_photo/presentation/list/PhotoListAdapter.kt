@@ -31,5 +31,7 @@ class PhotoListAdapter(
 
     override fun getItemCount() = photoList.size
 
+    override fun getItemId(position: Int) = photoList[position].id
+
     class PhotoViewHolder(var view: PhotoItemViewBinding) : RecyclerView.ViewHolder(view.root)
 }
