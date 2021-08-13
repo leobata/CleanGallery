@@ -71,6 +71,15 @@ fun TextView.errorVisibility(state: UIResponseState?) {
     }
 }
 
+@BindingAdapter("setLoading")
+fun ImageView.setLoading(state: UIResponseState?) {
+    if (isInstanceOf<UIResponseState.Loading>(state)) {
+        startLoadingAnimation()
+    } else {
+        stopLoadingAnimation()
+    }
+}
+
 inline fun <reified T> isInstanceOf(instance: Any?): Boolean {
     return instance is T
 }

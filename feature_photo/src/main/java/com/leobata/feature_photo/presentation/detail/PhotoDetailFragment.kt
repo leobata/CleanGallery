@@ -51,7 +51,7 @@ internal class PhotoDetailFragment :
 
     override fun onResume() {
         super.onResume()
-        if (isStateSaved) {
+        if (isResumed || isStateSaved) {
             viewModel.fetchData()
         }
     }

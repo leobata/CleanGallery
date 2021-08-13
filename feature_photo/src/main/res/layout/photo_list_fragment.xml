@@ -37,6 +37,15 @@
                 app:spanCount="@integer/grid_span_count" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <ImageView
+            android:id="@+id/loading"
+            style="@style/LoadingAnimationStyle"
+            app:layout_constraintBottom_toBottomOf="@+id/swipeContainer"
+            app:layout_constraintEnd_toEndOf="@+id/swipeContainer"
+            app:layout_constraintStart_toStartOf="@+id/swipeContainer"
+            app:layout_constraintTop_toTopOf="@+id/swipeContainer"
+            app:setLoading="@{viewModel.viewState}" />
+
         <TextView
             android:id="@+id/noData"
             android:layout_width="wrap_content"
