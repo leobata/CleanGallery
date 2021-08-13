@@ -6,15 +6,15 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk Versions.compileSdk
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.leobata.cleangallery"
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+        versionCode Releases.versionCode
+        versionName Releases.versionName
 
         testInstrumentationRunner "com.leobata.common_android.HiltTestRunner"
     }
@@ -57,7 +57,6 @@ dependencies {
     kapt Deps.hilt.kapt
     testImplementation Deps.test.junit
     androidTestImplementation Deps.test.junitExt
-    androidTestImplementation Deps.test.barista
     androidTestImplementation Deps.test.coreExecutor
     androidTestImplementation Deps.test.hiltCore
     androidTestImplementation Deps.test.hiltCompiler

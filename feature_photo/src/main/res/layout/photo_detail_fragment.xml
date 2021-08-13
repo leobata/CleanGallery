@@ -85,14 +85,6 @@
                     app:setVisibility="@{viewModel.viewState}" />
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-<!--            <ImageView-->
-<!--                android:id="@+id/loading"-->
-<!--                style="@style/LoadingAnimationStyle"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/refreshLayout"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/refreshLayout"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/refreshLayout"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/refreshLayout" />-->
-
             <TextView
                 android:id="@+id/noData"
                 android:layout_width="wrap_content"

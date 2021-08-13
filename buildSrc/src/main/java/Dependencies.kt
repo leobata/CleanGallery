@@ -18,8 +18,6 @@ object Versions {
     const val navigation = "2.3.5"
     const val coroutines = "1.4.0"
 
-    const val logging = "2.0.6"
-
     const val hilt = "2.35"
     const val hiltGradle = "2.28-alpha"
     const val hiltCompiler = "1.0.0"
@@ -29,12 +27,9 @@ object Versions {
     const val testRunner = "1.1.1"
     const val testCore = "1.3.0"
     const val testMockk = "1.12.0"
-    const val testUiAutomator = "2.2.0"
     const val testJunitExt = "1.1.0"
     const val testJunitKtx = "1.1.3"
     const val testRoom = "2.1.0"
-
-    const val espresso = "3.3.0"
 
     const val buildGradle = "7.1.0-alpha05"
 
@@ -56,7 +51,6 @@ object Versions {
 
 object Deps {
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    val logging = "io.github.microutils:kotlin-logging-jvm:${Versions.logging}"
     val retrofit = RetrofitDeps
     val android = AndroidDeps
     val coroutines = CoroutinesDeps
@@ -126,13 +120,10 @@ object TestDeps {
     val core = "androidx.test:core:${Versions.testCore}"
     val coreExecutor = "androidx.arch.core:core-testing:${Versions.archCore}"
     val coreKtx = "androidx.test:core-ktx:${Versions.testCore}"
-    val uiAutomator = "androidx.test.uiautomator:uiautomator:${Versions.testUiAutomator}"
     val junitExt = "androidx.test.ext:junit:${Versions.testJunitExt}"
     val junitKtx = "androidx.test.ext:junit-ktx:${Versions.testJunitKtx}"
     val mockk = "io.mockk:mockk:${Versions.testMockk}"
     val room = "androidx.room:room-testing:${Versions.testRoom}"
-    val barista = "com.github.SchibstedSpain:Barista:${Versions.espresso}"
-    val navigation = "androidx.navigation:navigation-testing:${Versions.navigation}"
     val hiltCore = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
     val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     val truth = "com.google.truth:truth:${Versions.truth}"

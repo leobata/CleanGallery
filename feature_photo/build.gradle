@@ -28,7 +28,12 @@ dependencies {
     kapt Deps.hilt.compiler
 
     testImplementation Deps.test.junit
+    testImplementation Deps.test.mockk
+    testImplementation Deps.test.core
+    testImplementation Deps.test.runner
+    testImplementation Deps.test.coreExecutor
+    testImplementation Deps.test.truth
+    testImplementation Deps.coroutines.test
 
     androidTestImplementation Deps.test.junitExt
-    androidTestImplementation Deps.test.barista
 }

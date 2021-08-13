@@ -27,7 +27,6 @@ dependencies {
     testImplementation Deps.test.junit
 
     androidTestImplementation Deps.test.junitExt
-    androidTestImplementation Deps.test.barista
     androidTestImplementation Deps.test.runner
     androidTestImplementation Deps.test.room
     androidTestImplementation Deps.test.hiltCore
